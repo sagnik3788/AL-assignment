@@ -4,6 +4,8 @@ Margin is the second technical-assessment project: a document-grounded question-
 
 The visual direction is intentionally distinct from Studywise: a cool editorial research desk with a source library, open paper workspace, indigo accents, and compact citation cards.
 
+![Margin document research desk](docs/images/margin-research-desk.png)
+
 ## Run locally
 
 Requires Python 3.12+ and an OpenRouter API key for document indexing and generated answers.
