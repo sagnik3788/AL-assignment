@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="360" viewBox="0 0 900 360" role="img" aria-labelledby="title desc">
+  <title id="title">Grounded GenAI reliability workflow</title>
+  <desc id="desc">Sources are validated and indexed. A question is retrieved against the index, then a relevance gate either abstains or sends evidence to a language model. The response is schema and citation checked before returning an answer.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="#526174"/>
+    </marker>
+    <style>
+      .node { fill: #fff; stroke: #65748b; stroke-width: 1.5; rx: 11; }
+      .control { fill: #eef2ff; stroke: #5267c9; stroke-width: 1.7; rx: 11; }
+      .safe { fill: #edf7f1; stroke: #37825c; stroke-width: 1.7; rx: 11; }
+      .warn { fill: #fff6e5; stroke: #bd8121; stroke-width: 1.7; rx: 11; }
+      .line { fill: none; stroke: #526174; stroke-width: 1.7; marker-end: url(#arrow); }
+      .label { font: 600 15px 'DejaVu Sans', sans-serif; fill: #202833; text-anchor: middle; }
+      .small { font: 12px 'DejaVu Sans', sans-serif; fill: #4b5563; text-anchor: middle; }
+      .tag { font: 11px 'DejaVu Sans', sans-serif; fill: #526174; text-anchor: middle; }
+    </style>
+  </defs>
+  <rect x="0" y="0" width="900" height="360" rx="16" fill="#f7f8fa"/>
+  <rect class="node" x="28" y="38" width="150" height="70"/>
+  <text class="label" x="103" y="68">Source files</text>
+  <text class="small" x="103" y="89">PDF / TXT / external data</text>
+  <rect class="node" x="220" y="38" width="160" height="70"/>
+  <text class="label" x="300" y="68">Parse and index</text>
+  <text class="small" x="300" y="89">validate · version · chunk</text>
+  <rect class="node" x="422" y="38" width="150" height="70"/>
+  <text class="label" x="497" y="68">Evidence store</text>
+  <text class="small" x="497" y="89">text · IDs · embeddings</text>
+  <path class="line" d="M178 73 H214"/>
+  <path class="line" d="M380 73 H416"/>
+
+  <rect class="node" x="28" y="231" width="150" height="70"/>
+  <text class="label" x="103" y="261">User question</text>
+  <text class="small" x="103" y="282">+ bounded context</text>
+  <rect class="node" x="220" y="231" width="160" height="70"/>
+  <text class="label" x="300" y="261">Retrieve evidence</text>
+  <text class="small" x="300" y="282">rank · retain trace</text>
+  <path class="line" d="M178 266 H214"/>
+  <path class="line" d="M497 108 V170 H300 V225"/>
+  <text class="tag" x="405" y="164">search only this session</text>
+
+  <polygon points="447,231 500,266 447,301 394,266" fill="#fff6e5" stroke="#bd8121" stroke-width="1.7"/>
+  <text class="label" x="447" y="263">Enough</text>
+  <text class="small" x="447" y="280">evidence?</text>
+  <path class="line" d="M380 266 H390"/>
+
+  <rect class="warn" x="622" y="38" width="125" height="70"/>
+  <text class="label" x="684" y="68">Abstain</text>
+  <text class="small" x="684" y="89">state what's missing</text>
+  <path class="line" d="M447 231 V157 H684 V114"/>
+  <text class="tag" x="517" y="151">no</text>
+
+  <rect class="control" x="540" y="231" width="150" height="70"/>
+  <text class="label" x="615" y="261">Generate</text>
+  <text class="small" x="615" y="282">evidence-bound schema</text>
+  <path class="line" d="M500 266 H534"/>
+  <text class="tag" x="518" y="253">yes</text>
+
+  <rect class="control" x="734" y="231" width="140" height="70"/>
+  <text class="label" x="804" y="261">Validate</text>
+  <text class="small" x="804" y="282">shape · citation IDs</text>
+  <path class="line" d="M690 266 H728"/>
+  <rect class="safe" x="762" y="38" width="120" height="70"/>
+  <text class="label" x="822" y="68">Return answer</text>
+  <text class="small" x="822" y="89">with citations</text>
+  <path class="line" d="M804 231 V114"/>
+  <text class="tag" x="829" y="173">valid</text>
+  <path class="line" d="M734 293 H712 V327 H615 V307"/>
+  <text class="tag" x="698" y="322">invalid: safe failure</text>
+</svg>

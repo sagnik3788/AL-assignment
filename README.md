@@ -21,3 +21,7 @@ Projects are kept in separate directories so each can be built and reviewed inde
 - **Studywise — AI Study Assistant:** [`studywise/`](studywise/). See its [README](studywise/README.md) for setup, architecture, tests, deployment, and evaluation.
 
 - **Margin — Document Research Desk:** [`document-qa/`](document-qa/), the document retrieval and Q&A assessment project. See its [README](document-qa/README.md) for setup, sample documents, evaluation, and its Render Blueprint at [`document-qa/render.yaml`](document-qa/render.yaml).
+
+## Mandatory reasoning challenge
+
+[Think Like a GenAI Engineer — PDF](docs/think-like-a-genai-engineer.pdf) · [Editable source](docs/think-like-a-genai-engineer.md)
