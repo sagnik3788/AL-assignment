@@ -20,17 +20,17 @@ The dashboard styling takes inspiration from [Zerch](https://github.com/sagnik37
 
 ## Deploy with Docker Compose
 
-Set these values in `.env` first: `DB_PASSWORD`, `APP_API_KEY`, and `OPENROUTER_API_KEY`. Use a long random hexadecimal database password (for example, `openssl rand -hex 32`) so it is safe in the database URL, plus a separate strong app access key, then run:
+Set these values in `.env` first: `DB_PASSWORD` and `OPENROUTER_API_KEY`. Use a long random hexadecimal database password (for example, `openssl rand -hex 32`) so it is safe in the database URL, then run:
 
 ```bash
 docker compose up --build -d
 ```
 
-Compose runs PostgreSQL 16 with a persistent volume. The app container runs Alembic migrations before starting Uvicorn as an unprivileged user. The app has a liveness health check and restarts on failure. Set `OPENROUTER_MODEL` to a model available to your OpenRouter account. Visit <http://localhost:8000>; the browser asks for the app access key, which it keeps in tab-scoped session storage. For a public internet deployment, put the service behind HTTPS and a reverse proxy, rotate secrets, and use a managed PostgreSQL service with backups.
+Compose runs PostgreSQL 16 with a persistent volume. The app container runs Alembic migrations before starting Uvicorn as an unprivileged user. The app has a liveness health check and restarts on failure. Set `OPENROUTER_MODEL` to a model available to your OpenRouter account. Visit <http://localhost:8000>. For a public internet deployment, put the service behind HTTPS and a reverse proxy, rotate secrets, and use a managed PostgreSQL service with backups.
 
 ## Deploy on Render
 
-The repository-root `render.yaml` defines a free Docker web service and PostgreSQL database for the `studywise/` directory. Create a new Blueprint in Render and connect this GitHub repository. Render prompts for `OPENROUTER_API_KEY`; it generates `APP_API_KEY` and wires the database URL. The app accepts Render's standard PostgreSQL URL format and applies Alembic migrations on startup. Free web services sleep after inactivity and free Render Postgres expires after 30 days, so this setup is for a short assessment demo. See [Render deployment steps](docs/deploy-render.md).
+The repository-root `render.yaml` defines a free Docker web service and PostgreSQL database for the `studywise/` directory. Create a new Blueprint in Render and connect this GitHub repository. Render prompts for `OPENROUTER_API_KEY` and wires the database URL. The provider key stays server-side. The app accepts Render's standard PostgreSQL URL format and applies Alembic migrations on startup. Free web services sleep after inactivity and free Render Postgres expires after 30 days, so this setup is for a short assessment demo. See [Render deployment steps](docs/deploy-render.md).
 
 ## Product behavior
 
@@ -46,7 +46,7 @@ The route is a small explicit state machine in `app/agent.py`, not a free-runnin
 
 ## API
 
-OpenAPI docs: `/api/docs`. When `APP_API_KEY` is set, send it as `X-API-Key` for all endpoints except `/` and health checks.
+OpenAPI docs: `/api/docs`. The API uses no app access key; `OPENROUTER_API_KEY` is used only by the server for model calls.
 
 | Method | Path | Purpose |
 |---|---|---|

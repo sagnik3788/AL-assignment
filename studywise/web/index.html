@@ -247,22 +247,12 @@
       messages.scrollTop = messages.scrollHeight;
       return bubble;
     }
-    async function apiFetch(url, options = {}, allowPrompt = true) {
-      const headers = { ...(options.headers || {}), 'X-API-Key': sessionStorage.getItem('study_api_key') || '' };
-      let response = await fetch(url, { ...options, headers });
-      if (response.status === 401 && allowPrompt) {
-        const key = window.prompt('Enter the app access key');
-        if (key) {
-          sessionStorage.setItem('study_api_key', key);
-          headers['X-API-Key'] = key;
-          response = await fetch(url, { ...options, headers });
-        }
-      }
-      return response;
+    async function apiFetch(url, options = {}) {
+      return fetch(url, options);
     }
     async function newSession() {
       const response = await apiFetch('/api/sessions', { method: 'POST' });
-      if (!response.ok) throw new Error('Could not start a session. Check the app access key if required.');
+      if (!response.ok) throw new Error('Could not start a session. Please try again.');
       sid = (await response.json()).session_id;
       sessionStorage.setItem('study_session_id', sid);
       updateSession();

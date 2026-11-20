@@ -1,6 +1,5 @@
 import json
 import logging
-import secrets
 import time
 from contextlib import asynccontextmanager
 from collections import defaultdict, deque
@@ -57,10 +56,6 @@ async def security_middleware(request: Request, call_next):
                 return Response(status_code=413, headers={"X-Request-ID": request_id})
         except ValueError:
             return Response(status_code=400, headers={"X-Request-ID": request_id})
-    if settings.app_api_key and request.url.path not in {"/", "/health/live", "/health/ready"}:
-        supplied = request.headers.get("x-api-key", "")
-        if not secrets.compare_digest(supplied, settings.app_api_key):
-            return Response(status_code=401, headers={"X-Request-ID": request_id})
     if request.url.path.endswith("/messages") and request.method == "POST":
         ip = request.client.host if request.client else "unknown"
         now = time.monotonic()

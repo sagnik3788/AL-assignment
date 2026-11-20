@@ -44,14 +44,6 @@ def test_request_id_header_is_returned(client):
     assert response.headers["x-request-id"] == "assessment-test"
 
 
-def test_api_key_protects_api_but_keeps_login_page_and_health_available(client, monkeypatch):
-    monkeypatch.setattr(main_module.settings, "app_api_key", "assessment-secret")
-    assert client.get("/").status_code == 200
-    assert client.get("/health/live").status_code == 200
-    assert client.post("/api/sessions").status_code == 401
-    assert client.post("/api/sessions", headers={"X-API-Key": "assessment-secret"}).status_code == 201
-
-
 def test_message_rate_limit(client, monkeypatch):
     client.app.dependency_overrides[get_agent_dependency] = StubAgent
     monkeypatch.setattr(main_module.settings, "rate_limit_per_minute", 2)

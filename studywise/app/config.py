@@ -7,7 +7,6 @@ class Settings(BaseSettings):
     model_config = SettingsConfigDict(env_file=".env", extra="ignore")
 
     app_env: str = "development"
-    app_api_key: str | None = None
     database_url: str = "sqlite:///./study_assistant.db"
     openrouter_api_key: str | None = None
     openrouter_model: str = "google/gemini-2.5-flash-lite"
