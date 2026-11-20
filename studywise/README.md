@@ -2,6 +2,8 @@
 
 An AI study assistant built for Aspirant League Assessment Problem 3. It routes student requests to a study-plan, explanation, quiz, or answer-feedback capability; asks for clarification when needed; preserves conversation history; and validates model output before returning it.
 
+![Studywise study workspace](docs/images/studywise-demo.png)
+
 ## Run locally
 
 Requires Python 3.12+.
