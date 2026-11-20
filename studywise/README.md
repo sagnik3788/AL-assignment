@@ -28,6 +28,10 @@ docker compose up --build -d
 
 Compose runs PostgreSQL 16 with a persistent volume. The app container runs Alembic migrations before starting Uvicorn as an unprivileged user. The app has a liveness health check and restarts on failure. Set `OPENROUTER_MODEL` to a model available to your OpenRouter account. Visit <http://localhost:8000>; the browser asks for the app access key, which it keeps in tab-scoped session storage. For a public internet deployment, put the service behind HTTPS and a reverse proxy, rotate secrets, and use a managed PostgreSQL service with backups.
 
+## Deploy on Render
+
+The repository-root `render.yaml` defines a free Docker web service and PostgreSQL database for the `studywise/` directory. Create a new Blueprint in Render and connect this GitHub repository. Render prompts for `OPENROUTER_API_KEY`; it generates `APP_API_KEY` and wires the database URL. The app accepts Render's standard PostgreSQL URL format and applies Alembic migrations on startup. Free web services sleep after inactivity and free Render Postgres expires after 30 days, so this setup is for a short assessment demo. See [Render deployment steps](docs/deploy-render.md).
+
 ## Product behavior
 
 - **Study plan:** create a time-bounded plan for a stated subject or topic.
