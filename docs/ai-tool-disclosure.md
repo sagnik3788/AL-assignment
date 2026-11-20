@@ -1,0 +1,3 @@
+# AI tool disclosure
+
+OpenAI Codex was used as an AI coding assistant to help draft the project structure, implementation, test cases, evaluation materials, and documentation. The assistant was given the assessment requirements and the requested OpenRouter integration. OpenRouter's `google/gemini-2.5-flash-lite` model completed a 15-case live run with 100% routing accuracy and non-empty responses. A subsequent attempt to add structured-output checks was blocked by an OpenRouter HTTP 402 response after one case; [incomplete-live-report.json](../evals/incomplete-live-report.json) records that incomplete attempt. The candidate should review the code and this disclosure, correct it if other tools or edits were used, and disclose any additional tools used before submission.

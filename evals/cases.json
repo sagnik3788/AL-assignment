@@ -1,0 +1,17 @@
+[
+  {"id":"plan-01","input":"Make a 5-day study plan for photosynthesis, 30 minutes per day.","expected":"study_plan"},
+  {"id":"plan-02","input":"Help me organize revision for algebra over the next week.","expected":"study_plan"},
+  {"id":"plan-03","input":"Create a beginner study schedule for Newton's laws.","expected":"study_plan"},
+  {"id":"explain-01","input":"Explain photosynthesis in simple terms with an example.","expected":"explain_topic"},
+  {"id":"explain-02","input":"Can you teach me how fractions work? I am new to them.","expected":"explain_topic"},
+  {"id":"explain-03","input":"What is gravity? Give me a clear explanation.","expected":"explain_topic"},
+  {"id":"quiz-01","input":"Quiz me on photosynthesis with practice questions.","expected":"quiz"},
+  {"id":"quiz-02","input":"Test my understanding of Python loops.","expected":"quiz"},
+  {"id":"quiz-03","input":"Give me a short practice quiz about the French Revolution.","expected":"quiz"},
+  {"id":"grade-01","input":"My answer is that plants use sunlight to make food from water and carbon dioxide.","expected":"evaluate_answer"},
+  {"id":"grade-02","input":"I think x is 4 because 2x equals 8.","expected":"evaluate_answer"},
+  {"id":"grade-03","input":"My answer is that gravity pulls objects toward each other.","expected":"evaluate_answer"},
+  {"id":"clarify-01","input":"Help me study.","expected":"clarify"},
+  {"id":"clarify-02","input":"Make a plan.","expected":"clarify"},
+  {"id":"clarify-03","input":"Can you help me?","expected":"clarify"}
+]
