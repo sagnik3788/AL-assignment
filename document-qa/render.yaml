@@ -12,10 +12,13 @@ services:
         value: production
       - key: DATABASE_URL
         fromDatabase:
-          name: margin-document-db
+          name: studywise-db
           property: connectionString
       - key: OPENROUTER_API_KEY
-        sync: false
+        fromService:
+          name: studywise
+          type: web
+          envVarKey: OPENROUTER_API_KEY
       - key: OPENROUTER_CHAT_MODEL
         value: google/gemini-2.5-flash-lite
       - key: OPENROUTER_EMBEDDING_MODEL
@@ -24,10 +27,3 @@ services:
         value: "512"
       - key: MIN_RELEVANCE_SCORE
         value: "0.28"
-
-databases:
-  - name: margin-document-db
-    databaseName: margin_documents
-    user: margin
-    postgresMajorVersion: "16"
-    plan: free

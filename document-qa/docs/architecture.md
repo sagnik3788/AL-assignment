@@ -37,7 +37,7 @@ flowchart LR
 ## Boundaries
 
 - The OpenRouter key exists only in the server environment. Browser requests never contain it.
-- PostgreSQL persists sessions, extracted text, embeddings, messages, and citations. The browser stores only its session UUID in tab-scoped session storage.
+- PostgreSQL persists sessions, extracted text, embeddings, messages, and citations in the `document_qa` schema. The browser stores only its session UUID in tab-scoped session storage.
 - Rate limiting is per process and source IP. The free blueprint runs one web instance; multiple replicas need a shared rate limiter.
 - The initial vector store is JSON embeddings in PostgreSQL with an application-side scan, capped at 2,000 chunks per desk. It avoids a vector-extension dependency for a small assessment corpus. Use pgvector or a dedicated vector store after measured corpus growth.
-- The Render Blueprint is separate at `document-qa/render.yaml`; it provisions a separate web service and database.
+- The Render Blueprint is separate at `document-qa/render.yaml`; it provisions a separate web service and reuses the existing Studywise PostgreSQL instance. A connection-level `search_path` and schema-scoped Alembic version table isolate Document Q&A's tables from Studywise's tables. The shared database credentials mean this is logical separation, not a security boundary between services.

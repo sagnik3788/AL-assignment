@@ -35,9 +35,9 @@ Scanned/image-only PDFs, OCR, password-protected PDFs, and handwriting are rejec
 
 ## Deploy on Render
 
-This project has its own Blueprint at [`render.yaml`](render.yaml), separate from the Studywise Blueprint. In Render choose **New → Blueprint**, connect this repository and `main`, and set the Blueprint Path to `document-qa/render.yaml`. Render will ask for `OPENROUTER_API_KEY`; enter the same provider key used by Studywise. The two services have separate environment variables and separate PostgreSQL databases. The container runs `alembic upgrade head` before starting FastAPI.
+This project has its own Blueprint at [`render.yaml`](render.yaml), separate from the Studywise Blueprint. It creates a separate web service but reuses the existing `studywise-db` PostgreSQL instance and `studywise` service's OpenRouter key. Document Q&A uses the dedicated `document_qa` PostgreSQL schema (and its own Alembic version table), so its tables do not collide with Studywise's tables. The container runs `alembic upgrade head` before starting FastAPI.
 
-The Blueprint provisions a free web service and free PostgreSQL database for assessment review. Free web services sleep when idle and have ephemeral local storage, so all user data is kept in PostgreSQL. Free Postgres expires after 30 days and is not suitable for production retention. Upgrade the database/service and set a deletion/retention policy before storing real or sensitive documents. See [Render's Free instance limitations](https://render.com/docs/free) and [Blueprint setup](https://render.com/docs/infrastructure-as-code).
+The Blueprint provisions only a free web service; it does not create another database. Free web services sleep when idle and have ephemeral local storage, so all user data is kept in PostgreSQL. The database is shared at the infrastructure level, but the app's schema keeps tables and migrations separate. This is logical namespace isolation, not a separate database-user security boundary. Render's free PostgreSQL expires after 30 days and is not suitable for production retention. Set a deletion/retention policy before storing real or sensitive documents. See [Render's Free instance limitations](https://render.com/docs/free) and [Blueprint setup](https://render.com/docs/infrastructure-as-code).
 
 ## Verification
 

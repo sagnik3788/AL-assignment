@@ -1,4 +1,4 @@
-from sqlalchemy import create_engine, event
+from sqlalchemy import create_engine, event, text
 from sqlalchemy.orm import DeclarativeBase, sessionmaker
 
 from app.config import get_settings
@@ -13,7 +13,11 @@ if url.startswith("postgres://"):
     url = url.replace("postgres://", "postgresql+psycopg://", 1)
 elif url.startswith("postgresql://"):
     url = url.replace("postgresql://", "postgresql+psycopg://", 1)
-engine = create_engine(url, pool_pre_ping=True, connect_args={"check_same_thread": False} if url.startswith("sqlite") else {})
+is_postgres = url.startswith("postgresql")
+connect_args = {"check_same_thread": False} if url.startswith("sqlite") else {}
+if is_postgres:
+    connect_args["options"] = "-csearch_path=document_qa,public"
+engine = create_engine(url, pool_pre_ping=True, connect_args=connect_args)
 SessionLocal = sessionmaker(bind=engine, expire_on_commit=False)
 
 
@@ -26,4 +30,7 @@ if url.startswith("sqlite"):
 def create_schema():
     from app import models  # noqa: F401
 
-    Base.metadata.create_all(engine)
+    with engine.begin() as connection:
+        if is_postgres:
+            connection.execute(text("CREATE SCHEMA IF NOT EXISTS document_qa"))
+        Base.metadata.create_all(connection)
