@@ -1,0 +1,17 @@
+MARGIN — PRODUCT AND DATA HANDLING BRIEF
+Internal review · Version 1.3
+
+PRODUCT
+Margin is a document question-answering workspace for learners and researchers. A user uploads a selectable-text PDF or UTF-8 text file and asks a question. The application extracts page text, splits it into overlapping word windows, creates embeddings, ranks passages by cosine similarity, and asks a language model to answer only from the selected passages. The response includes the source filename and page number for each cited passage.
+
+RETRIEVAL
+The first release uses OpenRouter's text-embedding-3-small model with a 512-dimension output. It stores vectors with chunk text in PostgreSQL and ranks them in the application. The expected assessment/demo scale is hundreds of documents per session, not millions of chunks. A configurable relevance threshold makes the system abstain when the best evidence is weak. Retrieval quality must be measured on representative queries before changing that threshold.
+
+PRIVACY AND STORAGE
+The OpenRouter API key is stored in the server environment and is never sent to the browser. Each browser desk has a random UUID session identifier, and document and conversation queries are scoped to that identifier. Files are parsed in memory; original file bytes are not saved. Extracted text and embeddings remain in the managed database until the user deletes the desk or a retention policy is added. Users should not upload confidential personal data to a public demo.
+
+KNOWN INPUT LIMITS
+PDFs must contain selectable text. Image-only scans, handwriting, and OCR are not supported. Uploads are limited to 10 MB, 150 PDF pages, and 800 chunks per document. Password-protected or corrupted PDFs are rejected. Long-running embedding or generation calls have a bounded timeout and produce a retryable error.
+
+RELIABILITY
+Model output is constrained to a JSON schema. The server discards citations that do not refer to retrieved passages and abstains if no valid citation remains. A prompt instruction cannot guarantee factual correctness; evaluation should check answer support, not only JSON validity. Conflicting evidence should be surfaced with citations to both sources instead of silently choosing one.

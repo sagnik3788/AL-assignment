@@ -1,0 +1,754 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f4f2ec">
+  <title>Margin — Document Research Desk</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 40 40%22><rect width=%2240%22 height=%2240%22 rx=%2212%22 fill=%22%23425de6%22/><text x=%2212%22 y=%2228%22 fill=%22white%22 font-size=%2224%22 font-family=%22Arial%22>M</text></svg>">
+  <style>
+    :root {
+  color-scheme:light;
+  --paper:#f4f2ec;
+  --white:#fffefa;
+  --ink:#202327;
+  --muted:#73777c;
+  --line:#d9d8d1;
+  --blue:#425de6;
+  --blue-dark:#3048c4;
+  --lav:#e9eaff;
+  --mint:#d9efe7;
+  --coral:#f0c7b9;
+  --shadow:0 12px 36px #22242b0d;
+  font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif
+}
+* {
+  box-sizing:border-box
+}
+body {
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  min-height:100vh
+}
+.shell {
+  max-width:1440px;
+  margin:auto;
+  min-height:100vh;
+  display:grid;
+  grid-template-columns:274px minmax(0,1fr)
+}
+.sidebar {
+  background:#ebe9e2;
+  border-right:1px solid var(--line);
+  padding:27px 20px;
+  display:flex;
+  flex-direction:column;
+  gap:25px
+}
+.brand {
+  display:flex;
+  align-items:center;
+  gap:11px;
+  padding:2px 4px 18px;
+  border-bottom:1px solid var(--line)
+}
+.brand-mark {
+  width:38px;
+  height:38px;
+  border-radius:12px;
+  background:var(--blue);
+  display:grid;
+  place-items:center;
+  color:white;
+  font-weight:800;
+  font-size:19px;
+  transform:rotate(-5deg)
+}
+.brand-name {
+  font-size:15px;
+  font-weight:780;
+  letter-spacing:.02em
+}
+.brand-sub {
+  font-size:10px;
+  color:var(--muted);
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  margin-top:3px
+}
+.section-label {
+  font-size:10px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--muted);
+  font-weight:700;
+  margin:0 0 11px
+}
+.upload {
+  border:1px dashed #aeb2bf;
+  border-radius:14px;
+  background:#f5f4ee;
+  padding:17px 14px;
+  text-align:center
+}
+.upload-icon {
+  margin:auto auto 9px;
+  width:36px;
+  height:36px;
+  border-radius:11px;
+  background:var(--lav);
+  color:var(--blue);
+  display:grid;
+  place-items:center;
+  font-size:20px
+}
+.upload p {
+  font-size:12px;
+  color:var(--muted);
+  line-height:1.5;
+  margin:0 0 11px
+}
+.upload input {
+  position:absolute;
+  width:1px;
+  height:1px;
+  overflow:hidden;
+  clip:rect(0,0,0,0)
+}
+.upload label {
+  display:inline-flex;
+  justify-content:center;
+  align-items:center;
+  padding:9px 12px;
+  background:var(--ink);
+  color:white;
+  border-radius:8px;
+  font-size:11px;
+  font-weight:700;
+  cursor:pointer
+}
+.upload label:hover {
+  background:#393d43
+}
+.upload input:focus-visible+label {
+  outline:3px solid #8796ff;
+  outline-offset:3px
+}
+.file-hint {
+  font-size:10px!important;
+  margin:10px 0 0!important
+}
+.doc-list {
+  display:grid;
+  gap:7px
+}
+.doc-row {
+  background:#f5f4ee;
+  border:1px solid var(--line);
+  border-radius:9px;
+  padding:10px;
+  display:grid;
+  grid-template-columns:30px minmax(0,1fr) 27px;
+  gap:8px;
+  align-items:center
+}
+.doc-glyph {
+  width:28px;
+  height:31px;
+  border-radius:6px;
+  background:var(--mint);
+  display:grid;
+  place-items:center;
+  color:#286c58;
+  font-size:10px;
+  font-weight:800
+}
+.doc-name {
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+  font-size:11px;
+  font-weight:650
+}
+.doc-meta {
+  font-size:10px;
+  color:var(--muted);
+  margin-top:3px
+}
+.icon-btn {
+  border:0;
+  background:transparent;
+  color:#8b8e92;
+  cursor:pointer;
+  padding:6px;
+  border-radius:6px;
+  font-size:15px
+}
+.icon-btn:hover {
+  background:#e4e1da;
+  color:var(--ink)
+}
+.empty-docs {
+  font-size:11px;
+  line-height:1.55;
+  color:var(--muted);
+  padding:3px 2px
+}
+.privacy {
+  margin-top:auto;
+  background:var(--mint);
+  padding:12px;
+  border-radius:11px;
+  font-size:10px;
+  line-height:1.5;
+  color:#355d50
+}
+.privacy strong {
+  display:block;
+  margin-bottom:3px;
+  font-size:11px;
+  color:#264b3f
+}
+.main {
+  min-width:0;
+  display:grid;
+  grid-template-rows:70px 1fr
+}
+.topbar {
+  padding:0 34px;
+  border-bottom:1px solid var(--line);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  background:#f8f7f2
+}
+.crumb {
+  font-size:11px;
+  color:var(--muted)
+}
+.crumb strong {
+  color:var(--ink);
+  font-weight:650
+}
+.status {
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  color:#4c645a;
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:.07em;
+  text-transform:uppercase
+}
+.status-dot {
+  width:7px;
+  height:7px;
+  background:#64a789;
+  border-radius:50%;
+  box-shadow:0 0 0 3px #64a78920
+}
+.workspace {
+  width:min(100%,1060px);
+  margin:0 auto;
+  padding:37px 32px 26px;
+  display:grid;
+  grid-template-rows:auto minmax(280px,1fr) auto;
+  gap:22px;
+  min-height:calc(100vh - 70px)
+}
+.intro {
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  gap:22px
+}
+.eyebrow {
+  color:var(--blue);
+  font-size:10px;
+  font-weight:800;
+  text-transform:uppercase;
+  letter-spacing:.16em
+}
+.intro h1 {
+  margin:8px 0 7px;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:clamp(29px,4vw,43px);
+  font-weight:500;
+  letter-spacing:-.04em;
+  line-height:1.08
+}
+.intro p {
+  margin:0;
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.55;
+  max-width:530px
+}
+.new-btn {
+  background:transparent;
+  border:1px solid var(--line);
+  border-radius:9px;
+  padding:10px 13px;
+  font-size:11px;
+  color:var(--ink);
+  font-weight:700;
+  cursor:pointer;
+  white-space:nowrap
+}
+.new-btn:hover {
+  border-color:#9ca1ab;
+  background:white
+}
+.conversation {
+  min-height:290px;
+  background:var(--white);
+  border:1px solid var(--line);
+  border-radius:17px;
+  box-shadow:var(--shadow);
+  display:flex;
+  flex-direction:column;
+  overflow:hidden
+}
+.conversation-head {
+  padding:14px 18px;
+  border-bottom:1px solid #ecebe5;
+  display:flex;
+  align-items:center;
+  justify-content:space-between
+}
+.conversation-head strong {
+  font-size:11px
+}
+.conversation-head span {
+  font-size:10px;
+  color:var(--muted)
+}
+.messages {
+  flex:1;
+  overflow:auto;
+  padding:21px;
+  display:flex;
+  flex-direction:column;
+  gap:18px
+}
+.welcome {
+  margin:auto;
+  max-width:410px;
+  text-align:center;
+  padding:22px 12px
+}
+.welcome-mark {
+  width:44px;
+  height:44px;
+  margin:0 auto 13px;
+  display:grid;
+  place-items:center;
+  border-radius:14px;
+  background:var(--lav);
+  color:var(--blue);
+  font-size:20px
+}
+.welcome h2 {
+  font-family:Georgia,serif;
+  font-size:22px;
+  font-weight:500;
+  margin:0 0 8px
+}
+.welcome p {
+  font-size:12px;
+  color:var(--muted);
+  line-height:1.6;
+  margin:0
+}
+.bubble {
+  max-width:min(82%,660px);
+  padding:13px 15px;
+  border-radius:13px;
+  font-size:12px;
+  line-height:1.65;
+  white-space:pre-wrap;
+  overflow-wrap:anywhere
+}
+.bubble.user {
+  align-self:flex-end;
+  background:#e9eaff;
+  border:1px solid #d9dcff
+}
+.bubble.assistant {
+  align-self:flex-start;
+  background:#f3f2ed;
+  border:1px solid #e7e5de
+}
+.bubble-label {
+  font-size:9px;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  font-weight:800;
+  color:var(--muted);
+  margin-bottom:5px
+}
+.bubble.user .bubble-label {
+  color:var(--blue)
+}
+.citation-list {
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+  margin-top:10px
+}
+.citation {
+  background:white;
+  border:1px solid var(--line);
+  border-radius:7px;
+  padding:6px 8px;
+  font-size:10px;
+  color:#454950
+}
+.citation b {
+  color:var(--blue)
+}
+.composer-wrap {
+  padding:14px 17px;
+  border-top:1px solid #ecebe5
+}
+.composer {
+  display:flex;
+  align-items:flex-end;
+  gap:9px
+}
+.composer textarea {
+  flex:1;
+  resize:vertical;
+  min-height:47px;
+  max-height:140px;
+  border:1px solid #d6d5ce;
+  border-radius:10px;
+  padding:13px;
+  font:inherit;
+  font-size:12px;
+  background:#fffefa;
+  outline:none
+}
+.composer textarea:focus {
+  border-color:#8796ff;
+  box-shadow:0 0 0 3px #425de61c
+}
+.send {
+  width:45px;
+  height:45px;
+  border:0;
+  border-radius:10px;
+  background:var(--blue);
+  color:white;
+  font-size:19px;
+  cursor:pointer
+}
+.send:hover {
+  background:var(--blue-dark)
+}
+.send:disabled {
+  opacity:.5;
+  cursor:wait
+}
+.composer-foot {
+  display:flex;
+  justify-content:space-between;
+  color:#8a8d91;
+  font-size:9px;
+  margin:8px 2px 0
+}
+.notice {
+  min-height:18px;
+  color:#a34836;
+  font-size:11px;
+  margin:3px 2px 0
+}
+.notice:empty {
+  display:none
+}
+.bottom-row {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px
+}
+.tip {
+  border:1px solid var(--line);
+  border-radius:12px;
+  padding:13px 15px;
+  background:#f8f7f2;
+  display:flex;
+  gap:10px;
+  align-items:flex-start
+}
+.tip-icon {
+  font-size:15px
+}
+.tip strong {
+  display:block;
+  font-size:10px;
+  margin-bottom:3px
+}
+.tip p {
+  font-size:10px;
+  line-height:1.45;
+  color:var(--muted);
+  margin:0
+}
+.loading {
+  color:var(--muted);
+  font-style:italic
+}
+@media(max-width:850px) {
+  .shell {
+    grid-template-columns:220px minmax(0,1fr)
+  }
+  .sidebar {
+    padding:20px 14px
+  }
+  .workspace {
+    padding:28px 20px
+  }
+  .topbar {
+    padding:0 20px
+  }
+
+}
+@media(max-width:650px) {
+  .shell {
+    grid-template-columns:1fr
+  }
+  .sidebar {
+    border-right:0;
+    border-bottom:1px solid var(--line);
+    padding:14px;
+    gap:13px
+  }
+  .brand {
+    padding-bottom:11px
+  }
+  .sidebar-bottom {
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px
+  }
+  .privacy {
+    margin-top:0
+  }
+  .section-label {
+    margin-bottom:7px
+  }
+  .upload {
+    padding:10px
+  }
+  .upload-icon {
+    display:none
+  }
+  .upload p {
+    margin-bottom:7px
+  }
+  .file-hint {
+    display:none
+  }
+  .doc-list {
+    max-height:125px;
+    overflow:auto
+  }
+  .main {
+    grid-template-rows:54px 1fr
+  }
+  .workspace {
+    min-height:calc(100vh - 54px);
+    padding:24px 13px;
+    gap:15px
+  }
+  .topbar {
+    padding:0 14px
+  }
+  .status {
+    font-size:9px
+  }
+  .intro {
+    align-items:flex-start
+  }
+  .intro h1 {
+    font-size:32px
+  }
+  .intro p {
+    font-size:12px
+  }
+  .new-btn {
+    padding:8px 9px;
+    font-size:10px
+  }
+  .conversation {
+    min-height:340px
+  }
+  .messages {
+    padding:15px
+  }
+  .bottom-row {
+    grid-template-columns:1fr
+  }
+  .bubble {
+    max-width:94%
+  }
+
+}
+
+    .privacy button {
+  margin-top:8px;
+  padding:0;
+  border:0;
+  background:transparent;
+  color:#305a4c;
+  text-decoration:underline;
+  font:inherit;
+  font-size:10px;
+  font-weight:700;
+  cursor:pointer
+}
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <aside class="sidebar" aria-label="Document library">
+      <div class="brand"><div class="brand-mark" aria-hidden="true">M</div><div><div class="brand-name">MARGIN</div><div class="brand-sub">document research desk</div></div></div>
+      <section aria-labelledby="upload-title">
+        <h2 class="section-label" id="upload-title">Add to your library</h2>
+        <div class="upload"><div class="upload-icon" aria-hidden="true">↑</div><p>Bring your own sources.<br>Answers stay grounded in these files.</p><input id="file-input" type="file" accept=".pdf,.txt,application/pdf,text/plain" disabled><label for="file-input">Choose a file</label><p class="file-hint">PDF or TXT · up to 10 MB</p></div>
+      </section>
+      <section aria-labelledby="library-title"><h2 class="section-label" id="library-title">Your sources <span id="doc-count">· 0</span></h2><div class="doc-list" id="doc-list"><div class="empty-docs">Your library is empty. Add a document to start asking questions.</div></div></section>
+      <div class="privacy"><strong>Private to this desk</strong>Your files and questions are scoped to this browser session. The OpenRouter key stays on the server.<br><button id="delete-desk" type="button">Delete this desk and its data</button></div>
+    </aside>
+    <main class="main">
+      <header class="topbar"><div class="crumb">Workspace <span aria-hidden="true">/</span> <strong>Research desk</strong></div><div class="status"><span class="status-dot"></span>Grounded answers</div></header>
+      <section class="workspace">
+        <div class="intro"><div><div class="eyebrow">Your documents, in conversation</div><h1>Read between<br>the pages.</h1><p>Ask a question across your sources. Margin finds relevant passages, answers from the text, and shows exactly where it looked.</p></div><button class="new-btn" id="new-session" type="button">＋ New desk</button></div>
+        <section class="conversation" aria-label="Question and answer conversation"><div class="conversation-head"><strong>Research conversation</strong><span id="source-status">No sources loaded</span></div><div class="messages" id="messages" aria-live="polite"><div class="welcome" id="welcome"><div class="welcome-mark" aria-hidden="true">⌕</div><h2>A good question starts here.</h2><p>Upload a PDF or text file, then ask about an idea, a figure, or how two sources connect.</p></div></div><form class="composer-wrap" id="chat-form"><div class="composer"><textarea id="question" maxlength="2000" placeholder="Ask something your documents can answer…" aria-label="Your question" required disabled></textarea><button class="send" id="send" type="submit" aria-label="Send question" disabled>↗</button></div><div class="composer-foot"><span>Enter to ask · Shift+Enter for a new line</span><span>Answers include source pages</span></div><div class="notice" id="notice" role="status"></div></form></section>
+        <div class="bottom-row"><div class="tip"><div class="tip-icon" aria-hidden="true">✳</div><div><strong>Ask for evidence</strong><p>Try “What does the report say about…?” or ask for a page reference.</p></div></div><div class="tip"><div class="tip-icon" aria-hidden="true">◌</div><div><strong>Missing context?</strong><p>Follow up naturally. The desk remembers recent turns in this session.</p></div></div></div>
+      </section>
+    </main>
+  </div>
+  <script>
+    const messages = document.querySelector('#messages');
+    const notice = document.querySelector('#notice');
+    let sessionId = sessionStorage.getItem('margin_session_id');
+    let busy = false;
+
+    async function api(url, options = {}) {
+      const response = await fetch(url, options);
+      const body = await response.json().catch(() => ({}));
+      if (!response.ok) throw new Error(body.detail || 'Something went wrong. Please try again.');
+      return body;
+    }
+    function addBubble(role, content, citations = [], abstained = false) {
+      document.querySelector('#welcome')?.remove();
+      const bubble = document.createElement('article');
+      bubble.className = `bubble ${role}`;
+      const label = document.createElement('div');
+      label.className = 'bubble-label';
+      label.textContent = role === 'user' ? 'You' : (abstained ? 'Not in these sources' : 'Margin');
+      const text = document.createElement('div');
+      text.textContent = content;
+      bubble.append(label, text);
+      if (citations.length) {
+        const list = document.createElement('div');
+        list.className = 'citation-list';
+        citations.forEach((citation, index) => {
+          const item = document.createElement('div');
+          item.className = 'citation';
+          const source = document.createElement('b');
+          source.textContent = `[${index + 1}] `;
+          item.append(source, document.createTextNode(`${citation.filename} · p. ${citation.page}`));
+          item.title = citation.excerpt;
+          list.append(item);
+        });
+        bubble.append(list);
+      }
+      messages.append(bubble);
+      messages.scrollTop = messages.scrollHeight;
+    }
+    function showHistory(items) {
+      messages.innerHTML = '';
+      if (!items.length) {
+        messages.innerHTML = '<div class="welcome" id="welcome"><div class="welcome-mark" aria-hidden="true">⌕</div><h2>A good question starts here.</h2><p>Upload a PDF or text file, then ask about an idea, a figure, or how two sources connect.</p></div>';
+        return;
+      }
+      items.forEach(item => addBubble(item.role === 'user' ? 'user' : 'assistant', item.content, item.citations || []));
+    }
+    async function createSession() {
+      const result = await api('/api/sessions', { method: 'POST' });
+      sessionId = result.session_id;
+      sessionStorage.setItem('margin_session_id', sessionId);
+      showHistory([]);
+      await refreshDocuments();
+    }
+    async function ensureSession() {
+      if (sessionId) {
+        try {
+          const result = await api(`/api/sessions/${sessionId}`);
+          showHistory(result.messages);
+          await refreshDocuments();
+          return;
+        } catch { sessionStorage.removeItem('margin_session_id'); }
+      }
+      await createSession();
+    }
+    async function refreshDocuments() {
+      const docs = await api(`/api/documents?session_id=${encodeURIComponent(sessionId)}`);
+      const list = document.querySelector('#doc-list');
+      document.querySelector('#doc-count').textContent = `· ${docs.length}`;
+      document.querySelector('#source-status').textContent = docs.length ? `${docs.length} source${docs.length === 1 ? '' : 's'} ready` : 'No sources loaded';
+      list.replaceChildren();
+      if (!docs.length) {
+        const empty = document.createElement('div'); empty.className = 'empty-docs'; empty.textContent = 'Your library is empty. Add a document to start asking questions.'; list.append(empty); return;
+      }
+      docs.forEach(doc => {
+        const row = document.createElement('div'); row.className = 'doc-row';
+        const glyph = document.createElement('div'); glyph.className = 'doc-glyph'; glyph.textContent = doc.filename.toLowerCase().endsWith('.pdf') ? 'PDF' : 'TXT';
+        const detail = document.createElement('div');
+        const name = document.createElement('div'); name.className = 'doc-name'; name.textContent = doc.filename; name.title = doc.filename;
+        const meta = document.createElement('div'); meta.className = 'doc-meta'; meta.textContent = `${doc.page_count} page${doc.page_count === 1 ? '' : 's'} · ${doc.chunk_count} passages`;
+        detail.append(name, meta);
+        const remove = document.createElement('button'); remove.className = 'icon-btn'; remove.type = 'button'; remove.textContent = '×'; remove.setAttribute('aria-label', `Remove ${doc.filename}`);
+        remove.addEventListener('click', async () => { try { await api(`/api/documents/${doc.document_id}?session_id=${encodeURIComponent(sessionId)}`, {method:'DELETE'}); await refreshDocuments(); } catch(error) { notice.textContent = error.message; } });
+        row.append(glyph, detail, remove); list.append(row);
+      });
+    }
+    document.querySelector('#file-input').addEventListener('change', async event => {
+      const file = event.target.files[0]; if (!file) return;
+      notice.textContent = `Reading ${file.name}…`;
+      const form = new FormData(); form.append('session_id', sessionId); form.append('file', file);
+      try { await api('/api/documents', {method:'POST', body:form}); notice.textContent = `${file.name} is ready for questions.`; await refreshDocuments(); }
+      catch(error) { notice.textContent = error.message; }
+      event.target.value = '';
+    });
+    document.querySelector('#chat-form').addEventListener('submit', async event => {
+      event.preventDefault();
+      const input = document.querySelector('#question'); const question = input.value.trim();
+      if (!question || busy) return;
+      busy = true; document.querySelector('#send').disabled = true; notice.textContent = '';
+      addBubble('user', question); input.value = '';
+      const pending = document.createElement('article'); pending.className='bubble assistant loading'; pending.textContent='Searching your sources…'; messages.append(pending); messages.scrollTop=messages.scrollHeight;
+      try {
+        const result = await api('/api/chat', {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({session_id:sessionId, question})});
+        pending.remove(); addBubble('assistant', result.answer, result.citations, result.abstained);
+      } catch(error) { pending.remove(); addBubble('assistant', error.message); }
+      finally { busy=false; document.querySelector('#send').disabled=false; input.focus(); }
+    });
+    document.querySelector('#question').addEventListener('keydown', event => { if (event.key === 'Enter' && !event.shiftKey) { event.preventDefault(); document.querySelector('#chat-form').requestSubmit(); } });
+    document.querySelector('#new-session').addEventListener('click', async () => { try { await createSession(); notice.textContent='Started a new private desk.'; } catch(error) { notice.textContent=error.message; } });
+    document.querySelector('#delete-desk').addEventListener('click', async () => {
+      if (!window.confirm('Delete this desk, its uploaded documents, and conversation history? This cannot be undone.')) return;
+      try { await api(`/api/sessions/${sessionId}`, {method:'DELETE'}); sessionStorage.removeItem('margin_session_id'); await createSession(); notice.textContent='Desk data deleted.'; }
+      catch(error) { notice.textContent=error.message; }
+    });
+    ensureSession().then(() => {
+      document.querySelector('#file-input').disabled = false;
+      document.querySelector('#question').disabled = false;
+      document.querySelector('#send').disabled = false;
+    }).catch(error => { notice.textContent=error.message; });
+  </script>
+</body>
+</html>

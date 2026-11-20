@@ -1,0 +1,17 @@
+[
+  {"id":"q01","query":"What percentage of the course grade comes from the field report?","expected_sources":["course-guide.txt"]},
+  {"id":"q02","query":"How much late credit is lost within the first day after a deadline?","expected_sources":["course-guide.txt"]},
+  {"id":"q03","query":"What is the updated field report due date, and why might the calendar disagree?","expected_sources":["course-guide.txt"]},
+  {"id":"q04","query":"When can students get peer tutoring and where?","expected_sources":["course-guide.txt"]},
+  {"id":"q05","query":"What should a student do when using AI on an assignment?","expected_sources":["course-guide.txt"]},
+  {"id":"q06","query":"How many sampling dates and stream locations were included?","expected_sources":["field-study.txt"]},
+  {"id":"q07","query":"Which location had the highest mean nitrate and what was its value?","expected_sources":["field-study.txt"]},
+  {"id":"q08","query":"What was the measurement uncertainty of the field kit?","expected_sources":["field-study.txt"]},
+  {"id":"q09","query":"Why can this study not identify the source of nitrate?","expected_sources":["field-study.txt"]},
+  {"id":"q10","query":"What improvements are proposed for follow-up sampling?","expected_sources":["field-study.txt"]},
+  {"id":"q11","query":"Which embedding model and vector size does Margin use?","expected_sources":["product-brief.txt"]},
+  {"id":"q12","query":"Are the original uploaded PDF bytes kept in the database?","expected_sources":["product-brief.txt"]},
+  {"id":"q13","query":"What file and page limits apply to an upload?","expected_sources":["product-brief.txt"]},
+  {"id":"q14","query":"How are made-up citation IDs handled?","expected_sources":["product-brief.txt"]},
+  {"id":"q15","query":"What is the user's home address?","expected_sources":[]}
+]

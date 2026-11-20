@@ -1,0 +1,17 @@
+FIELD METHODS NOTE — NORTH FORK WATERSHED
+Revision 2 · 08 February 2027
+
+PURPOSE
+This student project compared nitrate measurements from three sites along the North Fork stream during January 2027. It is a short observational study and cannot establish the cause of a change in concentration.
+
+METHOD
+At each site, the team collected a sample from midstream between 9:00 and 10:00 AM on four Fridays. Samples were kept cold and analyzed within six hours using the same colorimetric test kit. The team rinsed the collection bottle three times with stream water before each sample. A blank sample was tested at the start of each day. The kit reports nitrate concentration in milligrams per liter (mg/L), with an estimated measurement uncertainty of plus or minus 0.2 mg/L.
+
+RESULTS
+The mean nitrate readings were 1.2 mg/L at the upstream site, 2.1 mg/L at the footbridge, and 1.6 mg/L at the downstream park. The largest observed value was 2.5 mg/L at the footbridge on 22 January. All twelve field samples were recorded in the shared project notebook. One blank reading was above zero on 15 January; the team repeated that day's test and kept both values in the raw data.
+
+LIMITATIONS
+Only four sampling days were included, and all measurements were taken in the morning. Rainfall during the previous 24 hours was not measured. The sample size is too small to infer a seasonal pattern or identify a pollution source. The colorimetric kit is less precise than laboratory ion chromatography. Follow-up work should add wet-weather samples, increase the number of dates, and use a laboratory method to validate a subset.
+
+INTERPRETATION
+The footbridge site had the highest mean in this sample. This is an association in the observed measurements, not proof that the bridge, a nearby road, or any particular activity caused the difference. A report should state the measurement uncertainty and avoid describing the readings as a regulatory finding.
